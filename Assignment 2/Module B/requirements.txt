@@ -1,0 +1,180 @@
+# ============================================================
+#  CS 432 – Databases | Module B | Mess Management System
+#  Requirements & Setup Guide
+# ============================================================
+
+
+# ------------------------------------------------------------
+#  PYTHON DEPENDENCIES
+#  Run this command to install all dependencies:
+#  pip install -r requirements.txt
+# ------------------------------------------------------------
+
+flask
+flask-mysqldb
+PyJWT
+
+
+# ============================================================
+#  HOW TO RUN THE WEBSITE — STEP BY STEP
+# ============================================================
+
+# ────────────────────────────────────────────────────────────
+#  STEP 1 — Set up the MySQL Database
+# ────────────────────────────────────────────────────────────
+#
+#  Open MySQL Workbench (or any MySQL client) and run TWO scripts
+#  in this exact order:
+#
+#  Script 1:  sql/mess_management.sql
+#  ─────────────────────────────────
+#  Run this first. It will:
+#       - Create the database  `mess_management`
+#       - Create all 15 tables
+#       - Insert all sample data (members, schedules, inventory etc.)
+#       - Create the two default login accounts:
+#           Username: admin   Password: 123   (Admin role)
+#           Username: user1   Password: 123   (Regular User)
+#
+#  Script 2:  sql/userADD.sql
+#  ──────────────────────────
+#  ⚠️  Run this AFTER mess_management.sql — only needs to be run once.
+#  It will:
+#       - Add a  member_id  column to the Users table so each login
+#         account is linked to a specific Member record
+#       - Link user1 → MemberID 1 (Amit Shah, Student)
+#       - Add login accounts for other members:
+#           Username: riya    Password: 123   (Student — Riya Patel)
+#           Username: karan   Password: 123   (Student — Karan Mehta)
+#           Username: verma   Password: 123   (Staff   — Mr. Verma)
+#           Username: suresh  Password: 123   (Staff   — Suresh Cook)
+
+
+# ────────────────────────────────────────────────────────────
+#  STEP 2 — ⚠️  IMPORTANT: Set your MySQL password in db.py
+# ────────────────────────────────────────────────────────────
+#
+#  Open the file:  db.py
+#
+#  Find this section (around line 7):
+#
+#      app.config['MYSQL_HOST']     = 'localhost'
+#      app.config['MYSQL_USER']     = 'root'
+#      app.config['MYSQL_PASSWORD'] = 'password'    ← CHANGE THIS
+#      app.config['MYSQL_DB']       = 'mess_management'
+#
+#  Replace 'password' with YOUR MySQL root password.
+#
+#  Example — if your MySQL password is  admin123 :
+#      app.config['MYSQL_PASSWORD'] = 'admin123'
+#
+#  ⚠️  If you have NO password set on MySQL root, use:
+#      app.config['MYSQL_PASSWORD'] = ''
+#
+#  Save the file after editing.
+
+
+# ────────────────────────────────────────────────────────────
+#  STEP 3 — Install Python dependencies
+# ────────────────────────────────────────────────────────────
+#
+#  Open a terminal / command prompt in the project folder and run:
+#
+#      pip install -r requirements.txt
+
+
+# ────────────────────────────────────────────────────────────
+#  STEP 4 — Run the Flask app
+# ────────────────────────────────────────────────────────────
+#
+#  In the same terminal, run:
+#
+#      python app.py
+#
+#  You should see output like:
+#      * Running on http://127.0.0.1:5000
+#      * Debug mode: on
+
+
+# ────────────────────────────────────────────────────────────
+#  STEP 5 — Open the website
+# ────────────────────────────────────────────────────────────
+#
+#  Open your browser and go to:
+#
+#      http://localhost:5000
+#
+#  You will see the login page.
+#
+#  Login with:
+#      Admin account    →  username: admin    password: 123
+#      Student account  →  username: user1    password: 123
+#      Student account  →  username: riya     password: 123
+#      Student account  →  username: karan    password: 123
+#      Staff account    →  username: verma    password: 123
+#      Staff account    →  username: suresh   password: 123
+#
+#  Or sign up as a new Student or Staff using the Sign Up page.
+
+
+# ============================================================
+#  PROJECT FILE STRUCTURE
+# ============================================================
+#
+#  Module_B/
+#  │
+#  ├── app.py              ← Entry point — run this to start the server
+#  ├── db.py               ← ⚠️  Edit MYSQL_PASSWORD here
+#  ├── auth.py             ← Login verification + JWT token generation
+#  ├── routes.py           ← All Flask routes (URL endpoints)
+#  ├── rbac.py             ← Role-based access control helpers
+#  ├── logging_utils.py    ← Audit logging (file + DB)
+#  ├── requirements.txt    ← This file
+#  │
+#  ├── templates/          ← All HTML pages (Jinja2 templates)
+#  │   ├── base.html
+#  │   ├── login.html
+#  │   ├── signup.html
+#  │   ├── dashboard_admin.html
+#  │   ├── dashboard_student.html
+#  │   ├── dashboard_staff.html
+#  │   ├── members.html
+#  │   ├── all_tables.html
+#  │   ├── menu.html
+#  │   ├── meal_attendance.html
+#  │   ├── billing.html
+#  │   ├── inventory.html
+#  │   ├── suppliers.html
+#  │   ├── waste.html
+#  │   └── ratings.html
+#  │
+#  ├── sql/
+#  │   ├── mess_management.sql   ← Run this FIRST in MySQL
+#  │   └── userADD.sql           ← Run this SECOND in MySQL
+#  │
+#  └── logs/
+#      └── audit.log             ← Created automatically on first action
+
+
+# ============================================================
+#  COMMON ERRORS & FIXES
+# ============================================================
+#
+#  Error: "Access denied for user 'root'@'localhost'"
+#  Fix:   Wrong MySQL password in db.py — see STEP 2 above.
+#
+#  Error: "Unknown database 'mess_management'"
+#  Fix:   You haven't run the SQL script yet — see STEP 1, Script 1.
+#
+#  Error: "Unknown column 'member_id' in Users"
+#  Fix:   You haven't run userADD.sql yet — see STEP 1, Script 2.
+#
+#  Error: "ModuleNotFoundError: No module named 'flask'"
+#  Fix:   Run  pip install -r requirements.txt  first.
+#
+#  Error: "ModuleNotFoundError: No module named 'MySQLdb'"
+#  Fix:   Run  pip install flask-mysqldb
+#         On Windows you may also need:  pip install mysqlclient
+#
+#  Error: "jwt.exceptions.DecodeError"
+#  Fix:   Run  pip install PyJWT
