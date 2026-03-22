@@ -1,15 +1,3 @@
-# from flask_mysqldb import MySQL
-
-# mysql = MySQL()
-
-# def init_db(app):
-#     app.config['MYSQL_HOST'] = 'localhost'
-#     app.config['MYSQL_USER'] = 'root'
-#     app.config['MYSQL_PASSWORD'] = 'Kushal_692007'
-#     app.config['MYSQL_DB'] = 'mess_management'
-
-#     mysql.init_app(app)
-
 from flask_mysqldb import MySQL
 
 mysql = MySQL()
@@ -21,7 +9,7 @@ JWT_EXPIRY_HOURS = 24   # token valid for 24 hours
 def init_db(app):
     app.config['MYSQL_HOST']     = 'localhost'
     app.config['MYSQL_USER']     = 'root'
-    app.config['MYSQL_PASSWORD'] = 'Kushal_692007'
+    app.config['MYSQL_PASSWORD'] = 'password'
     app.config['MYSQL_DB']       = 'mess_management'
 
     mysql.init_app(app)
