@@ -1,0 +1,86 @@
+{
+  "before": {
+    "Menu by Date\n(DailySchedule JOIN)": [
+      228.48200052976608,
+      107.40000288933516,
+      1098.2999810948968
+    ],
+    "Billing Admin View\n(Status+Date ORDER BY)": [
+      194.34050045674667,
+      98.2999918051064,
+      1455.0000196322799
+    ],
+    "Meal Attendance\n(MealLog JOIN by MemberID)": [
+      229.06549886101857,
+      98.2999918051064,
+      844.0999954473227
+    ],
+    "Student Dashboard\n(MonthlyPayment by MemberID)": [
+      162.53849971690215,
+      85.49998165108263,
+      832.499994430691
+    ],
+    "Staff Shifts\n(StaffShiftLog by StaffID)": [
+      189.14200132712722,
+      93.00000965595245,
+      606.099987635389
+    ],
+    "Supplier Expenses\n(Purchase JOIN GROUP BY)": [
+      275.8190000895411,
+      130.50000416114926,
+      1345.9999754559249
+    ],
+    "Ratings Aggregation\n(MessRating JOIN GROUP BY)": [
+      277.25250052753836,
+      128.70001955889165,
+      995.0000094249845
+    ],
+    "Waste Log\n(WasteLog JOIN ORDER BY Date)": [
+      174.57400012062863,
+      96.90001024864614,
+      1087.6999876927584
+    ]
+  },
+  "after": {
+    "Menu by Date\n(DailySchedule JOIN)": [
+      263.39899937738664,
+      124.4999875780195,
+      1419.6999836713076
+    ],
+    "Billing Admin View\n(Status+Date ORDER BY)": [
+      168.8479994481895,
+      102.10002074018121,
+      2153.0000085476786
+    ],
+    "Meal Attendance\n(MealLog JOIN by MemberID)": [
+      217.50049869297072,
+      108.70001278817654,
+      1052.8999846428633
+    ],
+    "Student Dashboard\n(MonthlyPayment by MemberID)": [
+      162.44550031842664,
+      84.7000046633184,
+      647.2000095527619
+    ],
+    "Staff Shifts\n(StaffShiftLog by StaffID)": [
+      186.16849949466996,
+      94.59999273531139,
+      626.9000004976988
+    ],
+    "Supplier Expenses\n(Purchase JOIN GROUP BY)": [
+      266.8035004171543,
+      136.79999392479658,
+      830.4999792017043
+    ],
+    "Ratings Aggregation\n(MessRating JOIN GROUP BY)": [
+      224.52699951827526,
+      140.29999147169292,
+      805.300020147115
+    ],
+    "Waste Log\n(WasteLog JOIN ORDER BY Date)": [
+      181.87350055086426,
+      96.60000796429813,
+      1146.3999981060624
+    ]
+  }
+}
