@@ -365,15 +365,11 @@ def register_routes(app):
         redir = require_login()
         if redir:
             return redir
-
+        if not is_admin(session.get('role')):
+            return render_template('403.html', role=session['role'],
+                                   member_role=session.get('member_role')), 403
         cur = mysql.connection.cursor()
-        if is_admin(session.get('role')):
-            cur.execute("SELECT * FROM Member ORDER BY MemberID")
-        else:
-            cur.execute(
-                "SELECT * FROM Member WHERE MemberID = %s",
-                (session.get('member_id'),)
-            )
+        cur.execute("SELECT * FROM Member ORDER BY MemberID")
         members = cur.fetchall()
         cur.close()
         return render_template('members.html', members=members,
@@ -567,6 +563,9 @@ def register_routes(app):
         redir = require_login()
         if redir:
             return redir
+        if not is_admin(session.get('role')):
+            return render_template('403.html', role=session['role'],
+                                   member_role=session.get('member_role')), 403
 
         cur = mysql.connection.cursor()
         cur.execute(
@@ -767,9 +766,9 @@ def register_routes(app):
         redir = require_login()
         if redir:
             return redir
-        err = require_admin()
-        if err:
-            return err
+        if not is_admin(session.get('role')):
+            return render_template('403.html', role=session['role'],
+                                   member_role=session.get('member_role')), 403
         return render_template('all_tables.html',
                                role=session['role'],
                                member_role=session.get('member_role'))
@@ -777,6 +776,26 @@ def register_routes(app):
     # ─────────────────────────────────────────
     #  GENERIC ADMIN CRUD
     # ─────────────────────────────────────────
+
+    def resolve_table(cur, table_name):
+        """
+        Case-insensitive table name lookup.
+        On Windows MySQL, SHOW TABLES returns lowercase names.
+        This matches 'Member' against 'member' so both work.
+        Returns the actual table name from DB, or None if not found.
+        """
+        cur.execute("SHOW TABLES")
+        valid = [r[0] for r in cur.fetchall()]
+        # exact match first
+        if table_name in valid:
+            return table_name
+        # case-insensitive fallback
+        lower = table_name.lower()
+        for t in valid:
+            if t.lower() == lower:
+                return t
+        return None
+
     @app.route('/tables')
     def get_tables():
         err = require_admin()
@@ -794,11 +813,11 @@ def register_routes(app):
         if err:
             return err
         cur = mysql.connection.cursor()
-        cur.execute("SHOW TABLES")
-        valid = [r[0] for r in cur.fetchall()]
-        if table_name not in valid:
+        actual = resolve_table(cur, table_name)
+        if not actual:
+            cur.close()
             return jsonify({'error': 'Invalid table'}), 400
-        cur.execute("SELECT * FROM `{}`".format(table_name))
+        cur.execute("SELECT * FROM `{}`".format(actual))
         data    = cur.fetchall()
         columns = [d[0] for d in cur.description]
         cur.close()
@@ -810,18 +829,18 @@ def register_routes(app):
         if err:
             return err
         cur = mysql.connection.cursor()
-        cur.execute("SHOW TABLES")
-        valid = [r[0] for r in cur.fetchall()]
-        if table_name not in valid:
+        actual = resolve_table(cur, table_name)
+        if not actual:
+            cur.close()
             return jsonify({'error': 'Invalid table'}), 400
         d = request.json
         cur.execute(
-            "DELETE FROM `{}` WHERE `{}` = %s".format(table_name, d['column']),
+            "DELETE FROM `{}` WHERE `{}` = %s".format(actual, d['column']),
             (d['value'],)
         )
         mysql.connection.commit()
         cur.close()
-        log_action(f"Deleted from {table_name}", session['username'])
+        log_action(f"Deleted from {actual}", session['username'])
         return jsonify({'message': 'Deleted successfully'})
 
     @app.route('/update/<table_name>', methods=['POST'])
@@ -830,21 +849,21 @@ def register_routes(app):
         if err:
             return err
         cur = mysql.connection.cursor()
-        cur.execute("SHOW TABLES")
-        valid = [r[0] for r in cur.fetchall()]
-        if table_name not in valid:
+        actual = resolve_table(cur, table_name)
+        if not actual:
+            cur.close()
             return jsonify({'error': 'Invalid table'}), 400
         d          = request.json
         pk         = d['columns'][0]
         pk_val     = d['values'][0]
         set_clause = ", ".join(["`{}` = %s".format(c) for c in d['columns'][1:]])
         cur.execute(
-            "UPDATE `{}` SET {} WHERE `{}` = %s".format(table_name, set_clause, pk),
+            "UPDATE `{}` SET {} WHERE `{}` = %s".format(actual, set_clause, pk),
             d['values'][1:] + [pk_val]
         )
         mysql.connection.commit()
         cur.close()
-        log_action(f"Updated row in {table_name}", session['username'])
+        log_action(f"Updated row in {actual}", session['username'])
         return jsonify({'message': 'Updated successfully'})
 
     @app.route('/insert/<table_name>', methods=['POST'])
@@ -853,20 +872,20 @@ def register_routes(app):
         if err:
             return err
         cur = mysql.connection.cursor()
-        cur.execute("SHOW TABLES")
-        valid = [r[0] for r in cur.fetchall()]
-        if table_name not in valid:
+        actual = resolve_table(cur, table_name)
+        if not actual:
+            cur.close()
             return jsonify({'error': 'Invalid table'}), 400
         d    = request.json
         cols = ", ".join(["`{}`".format(c) for c in d['columns']])
         ph   = ", ".join(["%s"] * len(d['values']))
         cur.execute(
-            "INSERT INTO `{}` ({}) VALUES ({})".format(table_name, cols, ph),
+            "INSERT INTO `{}` ({}) VALUES ({})".format(actual, cols, ph),
             d['values']
         )
         mysql.connection.commit()
         cur.close()
-        log_action(f"Inserted into {table_name}", session['username'])
+        log_action(f"Inserted into {actual}", session['username'])
         return jsonify({'message': 'Inserted successfully'})
 
     # ─────────────────────────────────────────
