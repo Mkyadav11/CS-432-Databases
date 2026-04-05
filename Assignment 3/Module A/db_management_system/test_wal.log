@@ -1,0 +1,27 @@
+{"txn_id": "657aa494", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 1}
+{"txn_id": "657aa494", "type": "UPDATE", "table": "users", "key": 1, "old_value": null, "new_value": {"user_id": 1, "name": "Alice", "balance": 500.0, "city": "Mumbai"}, "lsn": 2}
+{"txn_id": "657aa494", "type": "UPDATE", "table": "users", "key": 2, "old_value": null, "new_value": {"user_id": 2, "name": "Bob", "balance": 300.0, "city": "Delhi"}, "lsn": 3}
+{"txn_id": "657aa494", "type": "UPDATE", "table": "users", "key": 3, "old_value": null, "new_value": {"user_id": 3, "name": "Charlie", "balance": 150.0, "city": "Pune"}, "lsn": 4}
+{"txn_id": "657aa494", "type": "UPDATE", "table": "products", "key": 101, "old_value": null, "new_value": {"product_id": 101, "name": "Laptop", "stock": 10, "price": 999.99}, "lsn": 5}
+{"txn_id": "657aa494", "type": "UPDATE", "table": "products", "key": 102, "old_value": null, "new_value": {"product_id": 102, "name": "Phone", "stock": 25, "price": 499.99}, "lsn": 6}
+{"txn_id": "657aa494", "type": "UPDATE", "table": "products", "key": 103, "old_value": null, "new_value": {"product_id": 103, "name": "Tablet", "stock": 15, "price": 349.99}, "lsn": 7}
+{"txn_id": "657aa494", "type": "UPDATE", "table": "orders", "key": 1001, "old_value": null, "new_value": {"order_id": 1001, "user_id": 1, "amount": 999.99, "time": "2025-01-10"}, "lsn": 8}
+{"txn_id": "657aa494", "type": "UPDATE", "table": "orders", "key": 1002, "old_value": null, "new_value": {"order_id": 1002, "user_id": 2, "amount": 499.99, "time": "2025-01-11"}, "lsn": 9}
+{"txn_id": "657aa494", "type": "COMMIT", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 10}
+{"txn_id": "6eeb18ff", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 11}
+{"txn_id": "6eeb18ff", "type": "UPDATE", "table": "users", "key": 1, "old_value": {"user_id": 1, "name": "Alice", "balance": 500.0, "city": "Mumbai"}, "new_value": {"user_id": 1, "name": "Alice", "balance": 300.0, "city": "Mumbai"}, "lsn": 12}
+{"txn_id": "6eeb18ff", "type": "UPDATE", "table": "products", "key": 101, "old_value": {"product_id": 101, "name": "Laptop", "stock": 10, "price": 999.99}, "new_value": {"product_id": 101, "name": "Laptop", "stock": 9, "price": 999.99}, "lsn": 13}
+{"txn_id": "6eeb18ff", "type": "ROLLBACK", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 14}
+{"txn_id": "15bd554a", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 15}
+{"txn_id": "15bd554a", "type": "UPDATE", "table": "users", "key": 3, "old_value": {"user_id": 3, "name": "Charlie", "balance": 150.0, "city": "Pune"}, "new_value": {"user_id": 3, "name": "Charlie", "balance": -350.0, "city": "Pune"}, "lsn": 16}
+{"txn_id": "15bd554a", "type": "ROLLBACK", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 17}
+{"txn_id": "d1644dd5", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 18}
+{"txn_id": "d1644dd5", "type": "UPDATE", "table": "users", "key": 2, "old_value": {"user_id": 2, "name": "Bob", "balance": 300.0, "city": "Delhi"}, "new_value": {"user_id": 2, "name": "Bob", "balance": 10299.0, "city": "Delhi"}, "lsn": 19}
+{"txn_id": "67e95dde", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 20}
+{"txn_id": "67e95dde", "type": "COMMIT", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 21}
+{"txn_id": "d1644dd5", "type": "ROLLBACK", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 22}
+{"txn_id": "d4e25b62", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 23}
+{"txn_id": "d4e25b62", "type": "UPDATE", "table": "users", "key": 1, "old_value": {"user_id": 1, "name": "Alice", "balance": 500.0, "city": "Mumbai"}, "new_value": {"user_id": 1, "name": "Alice", "balance": 400.0, "city": "Mumbai"}, "lsn": 24}
+{"txn_id": "d4e25b62", "type": "UPDATE", "table": "products", "key": 101, "old_value": {"product_id": 101, "name": "Laptop", "stock": 10, "price": 999.99}, "new_value": {"product_id": 101, "name": "Laptop", "stock": 9, "price": 999.99}, "lsn": 25}
+{"txn_id": "d4e25b62", "type": "UPDATE", "table": "orders", "key": 1003, "old_value": null, "new_value": {"order_id": 1003, "user_id": 1, "amount": 100.0, "time": "2025-06-01"}, "lsn": 26}
+{"txn_id": "d4e25b62", "type": "COMMIT", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 27}

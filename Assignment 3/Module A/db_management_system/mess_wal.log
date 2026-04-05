@@ -1,0 +1,33 @@
+{"txn_id": "4b8a0e6d", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 1}
+{"txn_id": "4b8a0e6d", "type": "UPDATE", "table": "member", "key": "M001", "old_value": null, "new_value": {"MemberID": "M001", "Name": "Aarav Shah", "DOB": "2003-05-12", "Email": "aarav@iit.ac.in", "ContactNumber": "9876543210", "Role": "Student"}, "lsn": 2}
+{"txn_id": "4b8a0e6d", "type": "UPDATE", "table": "member", "key": "M002", "old_value": null, "new_value": {"MemberID": "M002", "Name": "Priya Nair", "DOB": "2002-11-23", "Email": "priya@iit.ac.in", "ContactNumber": "9123456780", "Role": "Student"}, "lsn": 3}
+{"txn_id": "4b8a0e6d", "type": "UPDATE", "table": "member", "key": "M003", "old_value": null, "new_value": {"MemberID": "M003", "Name": "Rajan Mehta", "DOB": "1985-03-07", "Email": "rajan@iit.ac.in", "ContactNumber": "9000000001", "Role": "Admin"}, "lsn": 4}
+{"txn_id": "4b8a0e6d", "type": "UPDATE", "table": "meallog", "key": "L001", "old_value": null, "new_value": {"LogID": "L001", "MemberID": "M001", "ScheduleID": "SCH001", "Status": "Consumed"}, "lsn": 5}
+{"txn_id": "4b8a0e6d", "type": "UPDATE", "table": "meallog", "key": "L002", "old_value": null, "new_value": {"LogID": "L002", "MemberID": "M002", "ScheduleID": "SCH001", "Status": "Missed"}, "lsn": 6}
+{"txn_id": "4b8a0e6d", "type": "UPDATE", "table": "meallog", "key": "L003", "old_value": null, "new_value": {"LogID": "L003", "MemberID": "M001", "ScheduleID": "SCH002", "Status": "Consumed"}, "lsn": 7}
+{"txn_id": "4b8a0e6d", "type": "UPDATE", "table": "monthly_mess_payment", "key": "PAY001", "old_value": null, "new_value": {"MonthlyPaymentID": "PAY001", "MemberID": "M001", "StartDate": "2025-06-01", "EndDate": "2025-06-30", "Amount": 3000.0, "Status": "Paid"}, "lsn": 8}
+{"txn_id": "4b8a0e6d", "type": "UPDATE", "table": "monthly_mess_payment", "key": "PAY002", "old_value": null, "new_value": {"MonthlyPaymentID": "PAY002", "MemberID": "M002", "StartDate": "2025-06-01", "EndDate": "2025-06-30", "Amount": 3000.0, "Status": "Pending"}, "lsn": 9}
+{"txn_id": "4b8a0e6d", "type": "COMMIT", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 10}
+{"txn_id": "40def474", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 11}
+{"txn_id": "40def474", "type": "UPDATE", "table": "monthly_mess_payment", "key": "PAY002", "old_value": {"MonthlyPaymentID": "PAY002", "MemberID": "M002", "StartDate": "2025-06-01", "EndDate": "2025-06-30", "Amount": 3000.0, "Status": "Pending"}, "new_value": {"MonthlyPaymentID": "PAY002", "MemberID": "M002", "StartDate": "2025-06-01", "EndDate": "2025-06-30", "Amount": 3000.0, "Status": "Paid"}, "lsn": 12}
+{"txn_id": "40def474", "type": "UPDATE", "table": "meallog", "key": "L004", "old_value": null, "new_value": {"LogID": "L004", "MemberID": "M002", "ScheduleID": "SCH003", "Status": "Consumed"}, "lsn": 13}
+{"txn_id": "40def474", "type": "ROLLBACK", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 14}
+{"txn_id": "379a9fd1", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 15}
+{"txn_id": "379a9fd1", "type": "UPDATE", "table": "member", "key": "M004", "old_value": null, "new_value": {"MemberID": "M004", "Name": "Test User", "DOB": "2000-01-01", "Email": "test@iit.ac.in", "ContactNumber": "9111111111", "Role": "Cook"}, "lsn": 16}
+{"txn_id": "379a9fd1", "type": "ROLLBACK", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 17}
+{"txn_id": "b54d14f0", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 18}
+{"txn_id": "b54d14f0", "type": "UPDATE", "table": "monthly_mess_payment", "key": "PAY003", "old_value": null, "new_value": {"MonthlyPaymentID": "PAY003", "MemberID": "M001", "StartDate": "2025-07-01", "EndDate": "2025-07-31", "Amount": 0.0, "Status": "Pending"}, "lsn": 19}
+{"txn_id": "b54d14f0", "type": "ROLLBACK", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 20}
+{"txn_id": "b16f75ac", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 21}
+{"txn_id": "b16f75ac", "type": "UPDATE", "table": "meallog", "key": "L005", "old_value": null, "new_value": {"LogID": "L005", "MemberID": "M999", "ScheduleID": "SCH004", "Status": "Consumed"}, "lsn": 22}
+{"txn_id": "b16f75ac", "type": "ROLLBACK", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 23}
+{"txn_id": "c0768b3a", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 24}
+{"txn_id": "c0768b3a", "type": "UPDATE", "table": "monthly_mess_payment", "key": "PAY002", "old_value": {"MonthlyPaymentID": "PAY002", "MemberID": "M002", "StartDate": "2025-06-01", "EndDate": "2025-06-30", "Amount": 3000.0, "Status": "Pending"}, "new_value": {"MonthlyPaymentID": "PAY002", "MemberID": "M002", "StartDate": "2025-06-01", "EndDate": "2025-06-30", "Amount": 9999.0, "Status": "Paid"}, "lsn": 25}
+{"txn_id": "273c9d6d", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 26}
+{"txn_id": "c0768b3a", "type": "ROLLBACK", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 27}
+{"txn_id": "273c9d6d", "type": "COMMIT", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 28}
+{"txn_id": "f2a137c7", "type": "BEGIN", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 29}
+{"txn_id": "f2a137c7", "type": "UPDATE", "table": "member", "key": "M004", "old_value": null, "new_value": {"MemberID": "M004", "Name": "Sneha Joshi", "DOB": "2004-07-19", "Email": "sneha@iit.ac.in", "ContactNumber": "9222222222", "Role": "Student"}, "lsn": 30}
+{"txn_id": "f2a137c7", "type": "UPDATE", "table": "meallog", "key": "L004", "old_value": null, "new_value": {"LogID": "L004", "MemberID": "M004", "ScheduleID": "SCH001", "Status": "Consumed"}, "lsn": 31}
+{"txn_id": "f2a137c7", "type": "UPDATE", "table": "monthly_mess_payment", "key": "PAY003", "old_value": null, "new_value": {"MonthlyPaymentID": "PAY003", "MemberID": "M004", "StartDate": "2025-06-01", "EndDate": "2025-06-30", "Amount": 3000.0, "Status": "Pending"}, "lsn": 32}
+{"txn_id": "f2a137c7", "type": "COMMIT", "table": null, "key": null, "old_value": null, "new_value": null, "lsn": 33}
