@@ -1,10 +1,9 @@
 show databases;
--- DROP DATABASE mess_management;
 CREATE DATABASE mess_management;
 
 
 USE mess_management;
--- 1. Member Table (Mandatory)
+--1. Member Table
 CREATE TABLE Member (
     MemberID INT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
@@ -52,7 +51,7 @@ CREATE TABLE DailySchedule (
     IsActive BOOLEAN NOT NULL DEFAULT TRUE
 );
 
--- 4. Schedule_Items Table (Resolves the M:M relationship from UML)
+-- 4. Schedule_Items Table
 CREATE TABLE Schedule_Items (
     ScheduleID INT NOT NULL,
     ItemID INT NOT NULL,
@@ -78,7 +77,7 @@ CREATE TABLE Inventory (
 );
 
 
--- 6. Recipe Table (Resolves the M:M between MenuItem and Inventory)
+-- 6. Recipe Table 
 CREATE TABLE Recipe (
     RecipeID INT PRIMARY KEY,
     ItemID INT NOT NULL,
